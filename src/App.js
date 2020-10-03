@@ -1,28 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+// Got help from Lori Henderson
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: [{name: 'Pikachu'}, {name: 'Gengar'}],
+      shoe: [],
     };
   }
 
   componentDidMount() {
-    fetch("https://pokeapi.co/api/v2/pokemon")
+    fetch("http://127.0.0.1:8000/api/shoe/")
     .then(res => res.json())
-    .then(data => this.setState({pokemon: data.results}))
+    .then(data => this.setState({shoe: data}))
   }
 
   render() {
     return (
       <div>
         <ul>
-        {this.state.pokemon.map(p => (
-          <li>{p.name}</li>
-        ))}
+          {this.state.shoe.map(p => (
+            <li><p>ID: {p.id}</p><p>Size: {p.size}</p> <p>Brand Name: {p.brand_name}</p>
+            <p>Manufacturer: {p.manufacturer}</p> <p>Color: {p.color}</p> <p>Material: {p.material}</p>
+            <p>Shoe Type: {p.shoe_type}</p> <p>Fasten Type: {p.fasten_type}</p></li>
+          ))}
         </ul>
       </div>
     );
